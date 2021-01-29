@@ -19,7 +19,7 @@ static int smartgaps =
     0;			/* 1 means no outer gap when there is only one window */
 static int showbar = 1; /* 0 means no bar */
 static int topbar = 0;	/* 0 means bottom bar */
-static char *fonts[] = {"InterBold:size=14",
+static char *fonts[] = {"monospace:size=14",
 			"JoyPixels:pixelsize=10:antialias=true:autohint=true"};
 static char normbgcolor[] = "#222222";
 static char normbordercolor[] = "#0f0b0b";
@@ -157,7 +157,8 @@ static Key keys[] = {
     STACKKEYS(MODKEY, focus) STACKKEYS(MODKEY | ShiftMask, push)
     /* { MODKEY|ShiftMask,		XK_Escape,	spawn,	SHCMD("") }, */
     {MODKEY, XK_grave, spawn, SHCMD("dmenuunicode")},
-    /* { MODKEY|ShiftMask,		XK_grave,	togglescratch,	SHCMD("") },
+    /* { MODKEY|ShiftMask,		XK_grave,	togglescratch,	SHCMD("")
+     * },
      */
     TAGKEYS(XK_1, 0) TAGKEYS(XK_2, 1) TAGKEYS(XK_3, 2) TAGKEYS(XK_4, 3)
 	TAGKEYS(XK_5, 4) TAGKEYS(XK_6, 5) TAGKEYS(XK_7, 6) TAGKEYS(XK_8, 7)
@@ -175,7 +176,8 @@ static Key keys[] = {
     {MODKEY | ShiftMask, XK_BackSpace, spawn, SHCMD("sysact")},
 
     {MODKEY, XK_Tab, view, {0}},
-    /* { MODKEY|ShiftMask,		XK_Tab,		spawn,		SHCMD("") },
+    /* { MODKEY|ShiftMask,		XK_Tab,		spawn,		SHCMD("")
+     * },
      */
     {MODKEY, XK_q, killclient, {0}},
     {MODKEY | ShiftMask, XK_q, spawn, SHCMD("sysact")},
@@ -210,16 +212,19 @@ static Key keys[] = {
     {MODKEY, XK_bracketright, spawn, SHCMD("mpc seek +10")},
     {MODKEY | ShiftMask, XK_bracketright, spawn, SHCMD("mpc seek +60")},
     {MODKEY, XK_backslash, view, {0}},
-    /* { MODKEY|ShiftMask,		XK_backslash,		spawn,		SHCMD("") },
+    /* { MODKEY|ShiftMask,		XK_backslash,		spawn,		SHCMD("")
+     * },
      */
 
     {MODKEY, XK_a, togglegaps, {0}},
     {MODKEY | ShiftMask, XK_a, defaultgaps, {0}},
     {MODKEY, XK_s, togglesticky, {0}},
-    /* { MODKEY|ShiftMask,		XK_s,		spawn,		SHCMD("") },
+    /* { MODKEY|ShiftMask,		XK_s,		spawn,		SHCMD("")
+     * },
      */
     {MODKEY, XK_d, spawn, SHCMD("dmenu_run")},
-    /* { MODKEY,			XK_d,		spawn,		SHCMD("") } },
+    /* { MODKEY,			XK_d,		spawn,		SHCMD("") }
+     * },
      */
     {MODKEY, XK_f, togglefullscr, {0}},
     {MODKEY | ShiftMask, XK_f, setlayout, {.v = &layouts[8]}},
@@ -231,24 +236,30 @@ static Key keys[] = {
     {MODKEY, XK_semicolon, shiftview, {.i = 1}},
     {MODKEY | ShiftMask, XK_semicolon, shifttag, {.i = 1}},
     {MODKEY, XK_apostrophe, togglescratch, {.ui = 1}},
-    /* { MODKEY|ShiftMask,		XK_apostrophe,	spawn,		SHCMD("") },
+    /* { MODKEY|ShiftMask,		XK_apostrophe,	spawn,		SHCMD("")
+     * },
      */
     {MODKEY, XK_Return, spawn, {.v = termcmd}},
     {MODKEY | ShiftMask, XK_Return, togglescratch, {.ui = 0}},
 
     {MODKEY, XK_z, incrgaps, {.i = +3}},
-    /* { MODKEY|ShiftMask,		XK_z,		spawn,		SHCMD("") },
+    /* { MODKEY|ShiftMask,		XK_z,		spawn,		SHCMD("")
+     * },
      */
     {MODKEY, XK_x, incrgaps, {.i = -3}},
-    /* { MODKEY|ShiftMask,		XK_x,		spawn,		SHCMD("") },
+    /* { MODKEY|ShiftMask,		XK_x,		spawn,		SHCMD("")
+     * },
      */
-    /* { MODKEY,			XK_c,		spawn,		SHCMD("") },
+    /* { MODKEY,			XK_c,		spawn,		SHCMD("")
+     * },
      */
-    /* { MODKEY|ShiftMask,		XK_c,		spawn,		SHCMD("") },
+    /* { MODKEY|ShiftMask,		XK_c,		spawn,		SHCMD("")
+     * },
      */
     /* V is automatically bound above in STACKKEYS */
     {MODKEY, XK_b, togglebar, {0}},
-    /* { MODKEY|ShiftMask,		XK_b,		spawn,		SHCMD("") },
+    /* { MODKEY|ShiftMask,		XK_b,		spawn,		SHCMD("")
+     * },
      */
     {MODKEY, XK_n, spawn, SHCMD(TERMINAL " -e nvim -c VimwikiIndex")},
     {MODKEY | ShiftMask, XK_n, spawn,
@@ -280,7 +291,8 @@ static Key keys[] = {
     {MODKEY, XK_F3, spawn, SHCMD("displayselect")},
     {MODKEY, XK_F4, spawn,
      SHCMD(TERMINAL " -e pulsemixer; kill -44 $(pidof dwmblocks)")},
-    /* { MODKEY,			XK_F5,		xrdb,		{.v = NULL } },
+    /* { MODKEY,			XK_F5,		xrdb,		{.v = NULL }
+     * },
      */
     {MODKEY, XK_F6, spawn, SHCMD("torwrap")},
     {MODKEY, XK_F7, spawn, SHCMD("td-toggle")},
@@ -291,7 +303,8 @@ static Key keys[] = {
      SHCMD("mpv --no-cache --no-osc --no-input-default-bindings "
 	   "--input-conf=/dev/null --title=webcam $(ls /dev/video[0,2,4,6,8] | "
 	   "tail -n 1)")},
-    /* { MODKEY,			XK_F12,		xrdb,		{.v = NULL } },
+    /* { MODKEY,			XK_F12,		xrdb,		{.v = NULL }
+     * },
      */
     {MODKEY, XK_space, zoom, {0}},
     {MODKEY | ShiftMask, XK_space, togglefloating, {0}},
