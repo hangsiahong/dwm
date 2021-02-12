@@ -1,8 +1,8 @@
 /* See LICENSE file for copyright and license details. */
 
 /* Constants */
-#define TERMINAL "st"
-#define TERMCLASS "St"
+#define TERMINAL "alacritty"
+#define TERMCLASS "Alacritty"
 
 /* appearance */
 static unsigned int borderpx = 5; /* border pixel of windows */
@@ -19,15 +19,15 @@ static int smartgaps =
     0;			/* 1 means no outer gap when there is only one window */
 static int showbar = 1; /* 0 means no bar */
 static int topbar = 0;	/* 0 means bottom bar */
-static char *fonts[] = {"monospace:size=14",
+static char *fonts[] = {"sfmono:size=14",
 			"JoyPixels:pixelsize=10:antialias=true:autohint=true"};
 static char normbgcolor[] = "#222222";
 static char normbordercolor[] = "#0f0b0b";
-static char normfgcolor[] = "#172085";
+static char normfgcolor[] = "#eeeeee";
 /*static char selfgcolor[]            = "#eeeeee";*/
-static char selfgcolor[] = "#2A636E";
-static char selbordercolor[] = "#770000";
-static char selbgcolor[] = "#172085";
+static char selfgcolor[] = "#eeeeee";
+static char selbordercolor[] = "#435FB8";
+static char selbgcolor[] = "#435FB8";
 static char *colors[][3] = {
     /*               fg           bg           border   */
     [SchemeNorm] = {normfgcolor, normbgcolor, normbordercolor},
@@ -49,9 +49,9 @@ static Sp scratchpads[] = {
 };
 
 /* tagging */
-/*static const char *tags[] = { "1", "2", "3", "4", "5", "6", "7", "8", "9" };*/
-static const char *tags[] = {"I",  "II",  "III",  "IV", "V",
-			     "VI", "VII", "VIII", "IX"};
+static const char *tags[] = { "1", "2", "3", "4", "5", "6", "7", "8", "9" };
+/* static const char *tags[] = {"I",  "II",  "III",  "IV", "V", */
+			     /* "VI", "VII", "VIII", "IX"}; */
 
 static const Rule rules[] = {
     /* xprop(1):
@@ -415,3 +415,4 @@ static Button buttons[] = {
     {ClkTagBar, 0, Button5, shiftview, {.i = 1}},
     {ClkRootWin, 0, Button2, togglebar, {0}},
 };
+
