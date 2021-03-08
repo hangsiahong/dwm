@@ -1,8 +1,8 @@
 /* See LICENSE file for copyright and license details. */
 
 /* Constants */
-#define TERMINAL "alacritty"
-#define TERMCLASS "Alacritty"
+#define TERMINAL "st"
+#define TERMCLASS "St"
 
 /* appearance */
 static unsigned int borderpx = 5; /* border pixel of windows */
@@ -19,15 +19,17 @@ static int smartgaps =
     0;			/* 1 means no outer gap when there is only one window */
 static int showbar = 1; /* 0 means no bar */
 static int topbar = 0;	/* 0 means bottom bar */
-static char *fonts[] = {"sfmono:size=14",
+static char *fonts[] = {"Terminex:size=14",
 			"JoyPixels:pixelsize=10:antialias=true:autohint=true"};
 static char normbgcolor[] = "#222222";
 static char normbordercolor[] = "#0f0b0b";
 static char normfgcolor[] = "#eeeeee";
 /*static char selfgcolor[]            = "#eeeeee";*/
 static char selfgcolor[] = "#eeeeee";
-static char selbordercolor[] = "#435FB8";
-static char selbgcolor[] = "#435FB8";
+/* static char selbordercolor[] = "#435FB8"; */
+/* static char selbordercolor[] = "#435FB8"; */
+static char selbordercolor[] = "#171717";
+static char selbgcolor[] = "#040405";
 static char *colors[][3] = {
     /*               fg           bg           border   */
     [SchemeNorm] = {normfgcolor, normbgcolor, normbordercolor},
