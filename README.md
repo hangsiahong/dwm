@@ -1,4 +1,4 @@
-# This is a Folk Project from LukeSmithxyz
+# Luke's build of dwm
 
 ## FAQ
 
@@ -26,7 +26,7 @@ I haven't kept `man dwm`/`dwm.1` updated though. PRs welcome on that, lol.
 ## Installation for newbs
 
 ```
-git clone https://github.com/hangsiahong/dwm
+git clone https://github.com/LukeSmithxyz/dwm
 cd dwm
 sudo make install
 ```
