@@ -5,7 +5,7 @@
 #define TERMCLASS "St"
 
 /* appearance */
-static unsigned int borderpx  = 2;        /* border pixel of windows */
+static unsigned int borderpx  = 5;        /* border pixel of windows */
 static unsigned int snap      = 32;       /* snap pixel */
 static unsigned int gappih    = 20;       /* horiz inner gap between windows */
 static unsigned int gappiv    = 10;       /* vert inner gap between windows */
@@ -15,13 +15,13 @@ static int swallowfloating    = 0;        /* 1 means swallow floating windows by
 static int smartgaps          = 0;        /* 1 means no outer gap when there is only one window */
 static int showbar            = 1;        /* 0 means no bar */
 static int topbar             = 1;        /* 0 means bottom bar */
-static char *fonts[]          = { "dina ttf 10px:size=10", "JoyPixels:pixelsize=10:antialias=true:autohint=true"  };
+static char *fonts[]          = { "gohufont-14:size=10", "JoyPixels:pixelsize=15:antialias=true:autohint=true"  };
 static char normbgcolor[]           = "#222222";
 static char normbordercolor[]       = "#444444";
 static char normfgcolor[]           = "#bbbbbb";
-static char selfgcolor[]            = "#eeeeee";
+static char selfgcolor[]            = "#928C6F";
 /* static char selbordercolor[]        = "#770000"; */
-static char selbordercolor[]        = "#F0EDEE";
+static char selbordercolor[]        = "#928C6F";
 /* static char selbgcolor[]            = "#005577"; */
 static char selbgcolor[]            = "#352D39";
 
@@ -44,7 +44,9 @@ static Sp scratchpads[] = {
 };
 
 /* tagging */
-static const char *tags[] = { "1", "2", "3", "4", "5", "6", "7", "8", "9" };
+static const char *tags[] = { "1:", "2:", "3", "4", "5", "6", "7", "8", "9:ﱘ" };
+/* static const char *tags[] = { "", "", "", "", ", "﬐", "", "ﱘ", "" }; */
+/* static const char *tags[] = { "🔴", "🔴", "🔴", "🔴", "🔴", "🔴", "🔴", "🔴", "🔴" }; */
 
 static const Rule rules[] = {
     /* xprop(1):
