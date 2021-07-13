@@ -1,8 +1,8 @@
 /* See LICENSE file for copyright and license details. */
 
 /* Constants */
-#define TERMINAL "st"
-#define TERMCLASS "St"
+#define TERMINAL "kitty"
+#define TERMCLASS "Kitty"
 
 /* appearance */
 static unsigned int borderpx  = 5;        /* border pixel of windows */
@@ -15,15 +15,17 @@ static int swallowfloating    = 0;        /* 1 means swallow floating windows by
 static int smartgaps          = 0;        /* 1 means no outer gap when there is only one window */
 static int showbar            = 1;        /* 0 means no bar */
 static int topbar             = 1;        /* 0 means bottom bar */
-static char *fonts[]          = { "gohufont-14:size=10", "JoyPixels:pixelsize=15:antialias=true:autohint=true"  };
+static char *fonts[]          = { "Hack-10:size=10", "JoyPixels:pixelsize=15:antialias=true:autohint=true"  };
 static char normbgcolor[]           = "#222222";
 static char normbordercolor[]       = "#444444";
 static char normfgcolor[]           = "#bbbbbb";
 static char selfgcolor[]            = "#928C6F";
 /* static char selbordercolor[]        = "#770000"; */
-static char selbordercolor[]        = "#928C6F";
+/* static char selbordercolor[]        = "#928C6F"; */
+static char selbordercolor[]        = "#FF0000";
 /* static char selbgcolor[]            = "#005577"; */
-static char selbgcolor[]            = "#352D39";
+/* static char selbgcolor[]            = "#352D39"; */
+static char selbgcolor[]            = "#800000";
 
 static char *colors[][3] = {
        /*               fg           bg           border   */
@@ -44,7 +46,7 @@ static Sp scratchpads[] = {
 };
 
 /* tagging */
-static const char *tags[] = { "1:", "2:", "3", "4", "5", "6", "7", "8", "9:ﱘ" };
+static const char *tags[] = { "1", "2", "3", "4", "5", "6", "7", "8", "9:ﱘ" };
 /* static const char *tags[] = { "", "", "", "", ", "﬐", "", "ﱘ", "" }; */
 /* static const char *tags[] = { "🔴", "🔴", "🔴", "🔴", "🔴", "🔴", "🔴", "🔴", "🔴" }; */
 
@@ -163,7 +165,7 @@ static Key keys[] = {
 	{ MODKEY,			XK_BackSpace,	spawn,		SHCMD("sysact") },
 	{ MODKEY|ShiftMask,		XK_BackSpace,	spawn,		SHCMD("sysact") },
 
-	// { MODKEY|ShiftMask,			XK_Tab,		view,		{0} },
+	{ MODKEY,			XK_Tab,		view,		{0} },
 	/* { MODKEY|ShiftMask,		XK_Tab,		spawn,		SHCMD("") }, */
 	{ MODKEY,			XK_q,		killclient,	{0} },
 	{ MODKEY|ShiftMask,		XK_q,		spawn,		SHCMD("sysact") },
@@ -208,11 +210,13 @@ static Key keys[] = {
 	{ MODKEY,			XK_l,		setmfact,      	{.f = +0.05} },
 	{ MODKEY,			XK_semicolon,	shiftview,	{ .i = 1 } },
 	{ MODKEY|ShiftMask,		XK_semicolon,	shifttag,	{ .i = 1 } },
-	{ MODKEY,			XK_apostrophe,	togglescratch,	{.ui = 1} },
+	/* { MODKEY,			XK_apostrophe,	togglescratch,	{.ui = 1} }, */
+	/* { MODKEY,			XK_Tab,	togglescratch,	{.ui = 1} }, */
 	/* { MODKEY|ShiftMask,		XK_apostrophe,	spawn,		SHCMD("") }, */
 	{ MODKEY,			XK_Return,	spawn,		{.v = termcmd } },
-	/* { MODKEY|ShiftMask,		XK_Return,	togglescratch,	{.ui = 0} }, */
-	{ MODKEY,			XK_Tab,	togglescratch,	{.ui = 0} },
+	{ MODKEY|ShiftMask,		XK_Return,	togglescratch,	{.ui = 1} },
+	{ MODKEY|ShiftMask,		XK_Return,	togglescratch,	{.ui = 0} },
+	/* { MODKEY,			XK_Tab,	togglescratch,	{.ui = 0} }, */
 
 	{ MODKEY,			XK_z,		incrgaps,	{.i = +3 } },
 	/* { MODKEY|ShiftMask,		XK_z,		spawn,		SHCMD("") }, */
