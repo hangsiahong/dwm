@@ -44,6 +44,7 @@
 #include <X11/Xft/Xft.h>
 #include <X11/Xlib-xcb.h>
 #include <xcb/res.h>
+#include <X11/extensions/shape.h>
 
 #include "drw.h"
 #include "util.h"
@@ -176,6 +177,7 @@ typedef struct {
 } ResourcePref;
 
 /* function declarations */
+static const unsigned int cornerrad = 12; // Corner radius
 static void applyrules(Client *c);
 static int applysizehints(Client *c, int *x, int *y, int *w, int *h, int interact);
 static void arrange(Monitor *m);
@@ -244,6 +246,8 @@ static void setup(void);
 static void seturgent(Client *c, int urg);
 static void showhide(Client *c);
 static void sigchld(int unused);
+
+void roundcorners(Client *c);
 #ifndef __OpenBSD__
 static int getdwmblockspid();
 static void sigdwmblocks(const Arg *arg);
@@ -697,6 +701,7 @@ configure(Client *c)
 	ce.height = c->h;
 	ce.border_width = c->bw;
 	ce.above = None;
+	roundcorners(c);
 	ce.override_redirect = False;
 	XSendEvent(dpy, c->win, False, StructureNotifyMask, (XEvent *)&ce);
 }
@@ -2682,5 +2687,44 @@ main(int argc, char *argv[])
 	cleanup();
 	XCloseDisplay(dpy);
 	return EXIT_SUCCESS;
+}
+
+void
+roundcorners(Client *c)
+{
+    Window w = c->win;
+    XWindowAttributes wa;
+    XGetWindowAttributes(dpy, w, &wa);
+
+    int width = wa.width;
+    int height = wa.height;
+    int rad = cornerrad; // Corner radius
+
+    if (width < 2 * rad || height < 2 * rad)
+        return;
+
+    Pixmap mask = XCreatePixmap(dpy, w, width, height, 1);
+    if (!mask)
+        return;
+
+    XGCValues xgcv;
+    GC shape_gc = XCreateGC(dpy, mask, 0, &xgcv);
+    if (!shape_gc) {
+        XFreePixmap(dpy, mask);
+        return;
+    }
+
+    XSetForeground(dpy, shape_gc, 0);
+    XFillRectangle(dpy, mask, shape_gc, 0, 0, width, height);
+    XSetForeground(dpy, shape_gc, 1);
+    XFillArc(dpy, mask, shape_gc, 0, 0, 2*rad, 2*rad, 0, 23040);
+    XFillArc(dpy, mask, shape_gc, width - 2*rad - 1, 0, 2*rad, 2*rad, 0, 23040);
+    XFillArc(dpy, mask, shape_gc, 0, height - 2*rad - 1, 2*rad, 2*rad, 0, 23040);
+    XFillArc(dpy, mask, shape_gc, width - 2*rad - 1, height - 2*rad - 1, 2*rad, 2*rad, 0, 23040);
+    XFillRectangle(dpy, mask, shape_gc, rad, 0, width - 2*rad, height);
+    XFillRectangle(dpy, mask, shape_gc, 0, rad, width, height - 2*rad);
+    XShapeCombineMask(dpy, w, ShapeBounding, 0, 0, mask, ShapeSet);
+    XFreePixmap(dpy, mask);
+    XFreeGC(dpy, shape_gc);
 }
 
